@@ -3,25 +3,32 @@
 
 class Gameobject {
 public:
-        virtual void draw() = 0;
-  
+    virtual void draw(WINDOW *win) const = 0;
 };
-   
+
+class DeathSpikes : public Gameobject {
+public:
+
+};
+
 class Doodler : public Gameobject {
 public:
 
-	int xpos, ypos;
-	int yVelocity;
-	int xspeed;
+    int xpos, ypos;
+    int yVelocity;
+    int xspeed;
 
-	Doodler(){
-		
-	}
-
-
-        void draw();
+    Doodler(){
+        xpos = 31;          //x position of doodler at start of the game
+        ypos = 10;          //y position of doodler at start of the game
+        yVelocity = 0;
+    }
+    void draw(WINDOW *win) const{
+        mvprintw(ypos, xpos, "X");
+    }
 };
- 
+
+
 class Platform : public Gameobject {
 public:
         void draw();
