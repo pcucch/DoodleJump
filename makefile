@@ -3,13 +3,13 @@ CC=g++
 CFLAGS = -I. 
 
 # This will create your final output using .o compiled files
-make: doodlejump.o functions.o
-	$(CC) $(CFLAGS) -o main doodlejump.o functions.o -lncurses
+make: main.o functions.o
+	$(CC) $(CFLAGS) -o main main.o functions.o -lncurses
 
-doodlejump.o: main.cpp doodlejump.h
-	$(CC) $(CFLAGS) -c main.cpp -o doodlejump.o -lncurses
+main.o: main.cpp doodlejump.h
+	$(CC) $(CFLAGS) -c main.cpp -o main.o 
 
-functions.o: functions.cpp
+functions.o: functions.cpp doodlejump.h
 	$(CC) $(CFLAGS) -c functions.cpp -o functions.o
 
 # This will clean or remove compiled files so you can start fresh
