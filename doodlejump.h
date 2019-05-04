@@ -18,30 +18,32 @@ public:
     int yVelocity;
     int xspeed;
 
-    Doodler(){
-        xpos = 31;          //x position of doodler at start of the game
-        ypos = 10;          //y position of doodler at start of the game
-        yVelocity = 0;
-    }
-    void draw(WINDOW *win) const{
-        mvwprintw(win, ypos, xpos, "X");
-    }
+    Doodler();
+
+    void draw(WINDOW *win) const;
+
+    void clearPrev(WINDOW *win);
+
 };
 
 
 class Platform : public Gameobject {
 public:
-        void draw();
-};
- 
-class Enemy : public Gameobject {
-public:
-         void draw();
-};
-  
-class Boolet : public Gameobject {
-public:
-        void draw();
+    void draw();
 };
 
+class Enemy : public Gameobject {
+public:
+    void draw();
+};
+
+class Boolet : public Gameobject {
+public:
+    void draw();
+};
+
+WINDOW *create_newwin(int height, int width, int starty, int startx);
+
 #endif // DOODLEJUMP_H ///:~
+
+

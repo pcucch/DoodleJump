@@ -6,31 +6,20 @@
 
 using namespace std;
 
-WINDOW *create_newwin(int height, int width, int starty, int startx)
-{	WINDOW *local_win;
 
-    local_win = newwin(height, width, starty, startx);
-    box(local_win, 0 , 0);								/* 0, 0 gives default characters
-					 						* for the vertical and horizontal
-											 * lines			*/
-    wrefresh(local_win);								/* Show that box 		*/
-
-    return local_win;
-}
 
 int main()  {
 
     WINDOW *gamewin;
     Doodler doodler;
     int startx, starty, width, height; 						 //Parameters for gamewin(dow)
-    int ch;
+    int ch = 0;
     char mesg[]="Welcome to Doodle Jump! Press Any Button";				/* message to be appeared on the screen */
     int row,col;									/* to store the number of rows and *
 					 						* the number of colums of the screen */
     initscr();									/* start the curses mode */
     raw();
     noecho();
-    cbreak();
     getmaxyx(stdscr,row,col);							/* get the number of rows and columns */
     mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);                                	/* print the message at the center of the screen */
     mvprintw(row-2,0,"This screen has %d rows and %d columns\n",row,col);
@@ -47,20 +36,28 @@ int main()  {
     refresh();
     gamewin = create_newwin(height, width, starty, startx);
     keypad(gamewin,TRUE);
+    curs_set(0);
 
-    while((ch = getch()) != 'q') {                       //play game
-        usleep(50);
-        switch (ch) {
-            case KEY_LEFT:
-                doodler.xpos--;
-                break;
-            case KEY_RIGHT:
-                doodler.xpos++;
-                break;
+    while(ch != 'q') {                       //play game
+        halfdelay(1);
+        ch = getch();
+        if (ch != ERR) {
+            switch (ch) {
+                case KEY_LEFT:
+                    doodler.xpos--;
+                    break;
+                case KEY_RIGHT:
+                    doodler.xpos++;
+                    break;
+                default:
+                    break;
+            }
         }
+        else {doodler.ypos++;}
         doodler.draw(gamewin);
+        doodler.clearPrev(gamewin);
         wrefresh(gamewin);
-        usleep(500);     //will stall the loop by one second
+        usleep(1);     //will stall the loop by half of one second
     }
     endwin();
 
