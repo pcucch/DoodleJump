@@ -24,7 +24,7 @@ public:
         yVelocity = 0;
     }
     void draw(WINDOW *win) const{
-        mvprintw(ypos, xpos, "X");
+        mvwprintw(win, ypos, xpos, "X");
     }
 };
 
