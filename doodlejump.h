@@ -9,6 +9,16 @@ public:
    
 class Doodler : public Gameobject {
 public:
+
+	int xpos, ypos;
+	int yVelocity;
+	int xspeed;
+
+	Doodler(){
+		
+	}
+
+
         void draw();
 };
  
