@@ -59,7 +59,7 @@ int main()  {
         doodler.draw(gamewin);
         doodler.clearPrev(gamewin);
         wrefresh(gamewin);
-        usleep(1000);     //will stall the loop by half of one second
+        usleep(50000);     //will stall the loop by one second
     }
     endwin();
 

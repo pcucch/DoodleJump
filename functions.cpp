@@ -6,7 +6,7 @@ using namespace std;
 
 Doodler::Doodler() {
     xpos = 31;          //x position of doodler at start of the game
-    ypos = 10;          //y position of doodler at start of the game
+    ypos = 40;          //y position of doodler at start of the game
     yVelocity = 0;
 }
 
@@ -20,6 +20,10 @@ void Doodler::clearPrev(WINDOW *win){
     mvwprintw(win, ypos, xpos+1, " ");
     mvwprintw(win, ypos-1, xpos, " ");
     mvwprintw(win, ypos+1, xpos, " ");
+    mvwprintw(win, ypos-1, xpos-1, " ");
+    mvwprintw(win, ypos+1, xpos+1, " ");
+    mvwprintw(win, ypos-1, xpos+1, " ");
+    mvwprintw(win, ypos+1, xpos-1, " ");
     return;
 }
 
