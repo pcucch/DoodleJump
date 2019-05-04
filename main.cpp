@@ -45,9 +45,11 @@ int main()  {
             switch (ch) {
                 case KEY_LEFT:
                     doodler.xpos--;
+                    doodler.ypos++;
                     break;
                 case KEY_RIGHT:
                     doodler.xpos++;
+                    doodler.ypos++;
                     break;
                 default:
                     break;
@@ -57,7 +59,7 @@ int main()  {
         doodler.draw(gamewin);
         doodler.clearPrev(gamewin);
         wrefresh(gamewin);
-        usleep(1);     //will stall the loop by half of one second
+        usleep(1000);     //will stall the loop by half of one second
     }
     endwin();
 
