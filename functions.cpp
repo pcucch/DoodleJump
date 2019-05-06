@@ -29,7 +29,7 @@ void DeathSpikes::draw(WINDOW *win) const {
 
 Doodler::Doodler() {
     xpos = 31;          //x position of doodler at start of the game
-    ypos = 20;          //y position of doodler at start of the game
+    ypos = 38;          //y position of doodler at start of the game
     jumptrue = 0;
     prevxpos = 31;
     prevypos = 40;
@@ -142,6 +142,13 @@ void Doodler::time_stone() {
     }
 }
 
+int Doodler::reachLim() {
+    if (ypos <= 25){
+        return 1;
+    }
+    else { return 0;}
+}
+
 //PLATFORM
 
     Platform::Platform() {
@@ -165,6 +172,12 @@ void Doodler::time_stone() {
 void Platform::draw(WINDOW *win) const {
     for (int i = 0; i <= 4; i++){
         mvwprintw(win, ycen, xplace[i], "-");
+    }
+}
+
+void Platform::clear(WINDOW *win) const {
+    for (int i = 0; i <= 4; i++){
+        mvwprintw(win, ycen, xplace[i], " ");
     }
 }
 
@@ -223,3 +236,15 @@ void drawPlatforms(const vector<Platform> &plat, WINDOW *win){
     }
 }
 
+void moveEverything(Doodler &doodler, vector<Platform> &plat){
+    doodler.ypos++;
+    for (int i = 0; i < plat.size(); ++i) {
+        plat[i].ycen++;
+    }
+}
+
+void clearPrevPlatform(vector<Platform> &plat, WINDOW *win){
+    for (int i = 0; i < plat.size(); i++){
+            plat[i].clear(win);
+    }
+}

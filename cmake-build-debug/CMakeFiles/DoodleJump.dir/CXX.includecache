@@ -6,7 +6,29 @@
 
 #IncludeRegexTransform: 
 
+/home/tony/CLionProjects/DoodleJump/doodlejump.h
+vector
+-
+
 /home/tony/CLionProjects/DoodleJump/main.cpp
 iostream
+-
+ncurses.h
+-
+string.h
+-
+unistd.h
+-
+doodlejump.h
+/home/tony/CLionProjects/DoodleJump/doodlejump.h
+cstdlib
+-
+curses.h
+-
+termio.h
+-
+sys/ioctl.h
+-
+vector
 -
 

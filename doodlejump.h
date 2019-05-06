@@ -26,6 +26,7 @@ class Platform : public Gameobject {
 public:
     int xcen, ycen;
     int xplace[5];
+    int prevxpos, prevypos;
 
     Platform();
 
@@ -34,6 +35,9 @@ public:
     ~Platform();
 
     void draw(WINDOW *win) const ;
+
+    void clear(WINDOW *win) const ;
+
 };
 
 class Doodler : public Gameobject {
@@ -64,6 +68,8 @@ public:
 
     void time_stone();
 
+    int reachLim();
+
 };
 
 class Enemy : public Gameobject {
@@ -83,6 +89,12 @@ WINDOW *create_newwin(int height, int width, int starty, int startx);
 int _kbhit();
 
 void drawPlatforms(const vector<Platform> &plat, WINDOW *win);
+
+void clearPrevPlatform(vector<Platform> &plat, WINDOW *win);
+
+void moveEverything(Doodler &doodler, vector<Platform> &plat);
+
+
 
 #endif // DOODLEJUMP_H ///:~
 

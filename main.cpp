@@ -18,7 +18,7 @@ int main()  {
     WINDOW *gamewin;
     Doodler doodler;
     DeathSpikes spikes;
-    Platform startplat(31, 40);             //starting position of first platform
+    Platform startplat(31, 42);             //starting position of first platform
     Platform startplat1(20,30);
     Platform startplat2 (40, 25);
     Platform startplat3 (40, 15);
@@ -90,6 +90,10 @@ int main()  {
             break;
         }
         doodler.time_stone();
+        if (doodler.reachLim() == 1){
+            clearPrevPlatform(platforms, gamewin);
+            moveEverything(doodler, platforms);
+        }
         spikes.draw(gamewin);
         doodler.clearPrev(gamewin);
         drawPlatforms(platforms, gamewin);
