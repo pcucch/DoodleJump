@@ -37,10 +37,11 @@ int main()  {
     gamewin = create_newwin(height, width, starty, startx);
     keypad(gamewin,TRUE);
     curs_set(0);
-
+    Enemy ris(10,31);
     while(ch != 'q') {                       //play game
         halfdelay(1);
         ch = getch();
+	
         if (ch != ERR) {
             switch (ch) {
                 case KEY_LEFT:
@@ -51,15 +52,23 @@ int main()  {
                     doodler.xpos++;
                     doodler.ypos++;
                     break;
+		case ' ':
+		    if (doodler.xpos == ris.xpos) {
+				doodler.shootEnemy(gamewin, ris);	
+		    }
+		    else {
+			   	doodler.shootNothing(gamewin);
+		    }
+		    break;
                 default:
                     break;
             }
         }
         else {doodler.ypos++;}
         doodler.draw(gamewin);
-        doodler.clearPrev(gamewin);
+        doodler.clearPrevDood(gamewin);
         wrefresh(gamewin);
-        usleep(50000);     //will stall the loop by one second
+        usleep(50000);     //will stall the loop by half of one second
     }
     endwin();
 
