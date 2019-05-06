@@ -5,6 +5,7 @@
 #include <termios.h>
 #include <stropts.h>
 #include <sys/ioctl.h>
+#include <vector>
 
 
 using namespace std;
@@ -33,10 +34,13 @@ Doodler::Doodler() {
     prevxpos = 31;
     prevypos = 40;
     yVelocity = 0;
+    count = 0;
+    jumpheight = 15;
     timekeep = 0;
 }
 
 void Doodler::draw(WINDOW *win) const {     //draw
+    start_color();
     mvwprintw(win, ypos, xpos, "X");
     return;
 }
@@ -95,26 +99,76 @@ void Doodler::moveRight(int amount) {  //moves right
     return;
 }
 
-void Doodler::jump() {
-    jumptrue = 1;
+void Doodler::jump(vector<Platform> &plats) {
+    if (jumptrue == 0){
+        for (int i = 0; i < plats.size(); i++){
+            for (int j = 0; j < 5; j++) {
+                if(xpos == plats[i].xplace[j]) {
+                    if(ypos == plats[i].ycen - 1){
+                        jumptrue = 1;
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Doodler::time_stone() {
     extern float physicsM;
-    timekeep++;
-    if (timekeep = 1) {
-        physicsM += .1;
+
+    if (jumptrue == 1 && count == 0) {
+        jumpheight = 20;
+        physicsM = 2;
+        count++;
+        timekeep = 10;
+    }
+
+    if (jumpheight > 0 && jumptrue == 1){
+        jumpheight--;
+        physicsM -= .07;
+    }
+
+    if (jumpheight == 0){
+        physicsM = 1;
+        jumpheight++;
+        jumptrue = 0;
+        count = 0;
         timekeep = 0;
+    }
+
+    if (jumptrue == 0) {
+        physicsM += .07;
+        timekeep++;
     }
 }
 
 //PLATFORM
 
-
-void Platform::draw(void) {
-	cout << "￣￣￣" << endl;
+    Platform::Platform() {
+    //fill later
 }
 
+    Platform::Platform(int x, int y) {
+    xcen = x;
+    ycen = y;
+    xplace[0] = xcen - 2;
+    xplace[1] = xcen - 1;
+    xplace[2] = xcen;
+    xplace[3] = xcen + 1;
+    xplace[4] = xcen + 2;
+}
+
+    Platform::~Platform() {
+
+}
+
+void Platform::draw(WINDOW *win) const {
+    for (int i = 0; i <= 4; i++){
+        mvwprintw(win, ycen, xplace[i], "-");
+    }
+}
+
+//ENEMY
 
 void Enemy::draw(void) {
 	cout << "________" << endl;
@@ -126,6 +180,8 @@ void Enemy::draw(void) {
 void Boolet::draw(void) {
 	cout << "|" << endl;
 }
+
+//FUNCTIONS
 
 WINDOW *create_newwin(int height, int width, int starty, int startx){
 
@@ -157,5 +213,13 @@ int _kbhit() {                          //kbhit without conio.h, essential for m
     int bytesWaiting;
     ioctl(STDIN, FIONREAD, &bytesWaiting);
     return bytesWaiting;
+
+
+}
+
+void drawPlatforms(const vector<Platform> &plat, WINDOW *win){
+    for (int i = 0; i < plat.size(); i++){
+        plat[i].draw(win);
+    }
 }
 

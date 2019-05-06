@@ -1,5 +1,8 @@
 #ifndef DOODLEJUMP_H
 #define DOODLEJUMP_H
+#include <vector>
+
+using namespace std;
 
 //CLASSES
 
@@ -18,6 +21,21 @@ public:
     void draw(WINDOW *win) const;
 };
 
+
+class Platform : public Gameobject {
+public:
+    int xcen, ycen;
+    int xplace[5];
+
+    Platform();
+
+    Platform(int x, int y);
+
+    ~Platform();
+
+    void draw(WINDOW *win) const ;
+};
+
 class Doodler : public Gameobject {
 public:
 
@@ -26,7 +44,9 @@ public:
     int jumptrue;       //1 if doodler is jumping
     int yVelocity;
     int xspeed;
-    float timekeep;
+    int count;
+    int jumpheight;
+    int timekeep;
 
     Doodler();
 
@@ -40,16 +60,10 @@ public:
 
     void moveRight(int amount);
 
-    void jump();
+    void jump(vector<Platform> &plats);
 
     void time_stone();
 
-};
-
-
-class Platform : public Gameobject {
-public:
-    void draw();
 };
 
 class Enemy : public Gameobject {
@@ -67,6 +81,8 @@ public:
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 int _kbhit();
+
+void drawPlatforms(const vector<Platform> &plat, WINDOW *win);
 
 #endif // DOODLEJUMP_H ///:~
 

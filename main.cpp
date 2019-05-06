@@ -11,24 +11,37 @@
 
 using namespace std;
 
-float physicsM = .3;       //neccesary for keeping the physics time
+float physicsM = 1;       //neccesary for keeping the physics time
 
 int main()  {
 
     WINDOW *gamewin;
     Doodler doodler;
     DeathSpikes spikes;
+    Platform startplat(31, 40);             //starting position of first platform
+    Platform startplat1(20,30);
+    Platform startplat2 (40, 25);
+    Platform startplat3 (40, 15);
+    vector<Platform> platforms;
+    platforms.push_back(startplat);
+    platforms.push_back(startplat1);
+    platforms.push_back(startplat2);
+    platforms.push_back(startplat3);
     int startx, starty, width, height; 						    //Parameters for gamewin(dow)
+    int score = 0;                                          //keeps the score and can display it
     int ch = 0;
     char mesg[]="Welcome to Doodle Jump! Press Any Button";				/* message to be appeared on the screen */
+    char scoremsg[] = "Your Current Score Is";
     int row,col;        							    		/* to store the number of rows and *
 					 	            			    	    	* the number of colums of the screen */
     initscr();						            			    /* start the curses mode */
     raw();
+    start_color();  //color enable
     noecho();
     getmaxyx(stdscr,row,col);							        /* get the number of rows and columns */
     mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);                                	/* print the message at the center of the screen */
-    mvprintw(row-2,0,"This screen has %d rows and %d columns\n",row,col);
+    mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);
+//    mvprintw(row-2,0,"This screen has %d rows and %d columns\n",row,col);
     refresh();
     getch();
     keypad(stdscr, TRUE);                 //enables use of keypad on specified window
@@ -65,7 +78,13 @@ int main()  {
             usleep(100000 / physicsM);
             doodler.prevypos = doodler.ypos;
             doodler.prevxpos = doodler.xpos;
-            doodler.ypos++;
+            doodler.jump(platforms);            //checks for jump
+            if (doodler.jumptrue == 1){
+                doodler.ypos--;
+            }
+            else if (doodler.jumptrue == 0) {
+                doodler.ypos++;
+            }
         }
         if (doodler.checkDeath() == 1){
             break;
@@ -73,6 +92,7 @@ int main()  {
         doodler.time_stone();
         spikes.draw(gamewin);
         doodler.clearPrev(gamewin);
+        drawPlatforms(platforms, gamewin);
         doodler.draw(gamewin);
         wrefresh(gamewin);
     }
