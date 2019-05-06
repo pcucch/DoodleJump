@@ -8,6 +8,7 @@
 #include <termio.h>
 #include <sys/ioctl.h>
 #include <vector>
+#include <time.h>
 
 using namespace std;
 
@@ -21,27 +22,30 @@ int main()  {
     Platform startplat(31, 42);             //starting position of first platform
     Platform startplat1(20,30);
     Platform startplat2 (40, 25);
-    Platform startplat3 (40, 15);
+    Platform startplat3 (40, 12);
     vector<Platform> platforms;
     platforms.push_back(startplat);
     platforms.push_back(startplat1);
     platforms.push_back(startplat2);
     platforms.push_back(startplat3);
+
+
     int startx, starty, width, height; 						    //Parameters for gamewin(dow)
     int score = 0;                                          //keeps the score and can display it
     int ch = 0;
-    char mesg[]="Welcome to Doodle Jump! Press Any Button";				/* message to be appeared on the screen */
-    char scoremsg[] = "Your Current Score Is";
+    char mesg[]="Welcome to Moodle Jump! Press Any Button";				/* message to be appeared on the screen */
+    char scoremsg[] = "Your Current GPA Is";
+    srand(time(0));
     int row,col;        							    		/* to store the number of rows and *
-					 	            			    	    	* the number of colums of the screen */
+					 	            			    	    	* the number of columns of the screen */
     initscr();						            			    /* start the curses mode */
-    raw();
+    raw();                                      //no input buffering
     start_color();  //color enable
+    init_pair(1, COLOR_GREEN, COLOR_YELLOW);
     noecho();
     getmaxyx(stdscr,row,col);							        /* get the number of rows and columns */
     mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);                                	/* print the message at the center of the screen */
-    mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);
-//    mvprintw(row-2,0,"This screen has %d rows and %d columns\n",row,col);
+    mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);                   //Print Score
     refresh();
     getch();
     keypad(stdscr, TRUE);                 //enables use of keypad on specified window
@@ -91,13 +95,21 @@ int main()  {
         }
         doodler.time_stone();
         if (doodler.reachLim() == 1){
+            score++;
+            mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);
             clearPrevPlatform(platforms, gamewin);
             moveEverything(doodler, platforms);
         }
+        if (platforms[platforms.size() - 1].ycen >= 8) {
+            addPlat(platforms);
+        }
+        destroyPlatform(platforms);             //Checks for platforms going offscreen and deletes them from the vector to stop a memory leak
         spikes.draw(gamewin);
         doodler.clearPrev(gamewin);
         drawPlatforms(platforms, gamewin);
+        wattron(gamewin, 1);
         doodler.draw(gamewin);
+        wattroff(gamewin, 1);
         wrefresh(gamewin);
     }
     endwin();

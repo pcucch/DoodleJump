@@ -28,7 +28,7 @@ public:
     int xplace[5];
     int prevxpos, prevypos;
 
-    Platform();
+    Platform(int x);
 
     Platform(int x, int y);
 
@@ -37,7 +37,6 @@ public:
     void draw(WINDOW *win) const ;
 
     void clear(WINDOW *win) const ;
-
 };
 
 class Doodler : public Gameobject {
@@ -94,7 +93,9 @@ void clearPrevPlatform(vector<Platform> &plat, WINDOW *win);
 
 void moveEverything(Doodler &doodler, vector<Platform> &plat);
 
+void addPlat(vector<Platform> &v);
 
+void destroyPlatform(vector<Platform> &plat);
 
 #endif // DOODLEJUMP_H ///:~
 
