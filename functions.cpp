@@ -11,9 +11,7 @@
 
 using namespace std;
 
-void Boolet::draw(void) {
-	cout << "|" << endl;
-}
+
 
 //FUNCTIONS
 

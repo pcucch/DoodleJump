@@ -32,6 +32,8 @@ int main()  {
 
     vector<Enemy> enemies;
 
+    vector<Boolet>boolets;
+
     int startx, starty, width, height; 						    //Parameters for gamewin(dow)
     int score = 0;                                          //keeps the score and can display it
     int ch = 0;
@@ -39,6 +41,7 @@ int main()  {
     char scoremsg[] = "Your Current GPA Is";
     srand(time(0));
     int dead = 1;
+    int strike;
     int row,col;        							    		/* to store the number of rows and *
 					 	            			    	    	* the number of columns of the screen */
     initscr();						            			    /* start the curses mode */
@@ -77,6 +80,17 @@ int main()  {
                     break;
                 case 'd':
                     doodler.moveRight(2);
+                    break;
+                case ' ' :
+                    if(strike = doodler.align(enemies)) {
+                        doodler.shootEnemy(enemies[strike], gamewin);
+                        enemies[strike-1].destroy(gamewin);
+                        enemies.erase(enemies.begin() + strike);
+                    }
+                    else {
+                        doodler.shootNothing(gamewin);
+                    }
+                    break;
                 default:
                     break;
             }

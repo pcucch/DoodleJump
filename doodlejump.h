@@ -59,6 +59,21 @@ public:
 
 };
 
+class Boolet : public Gameobject {
+public:
+    int xpos;
+    int ypos;
+    int yVelocity;
+
+    Boolet(int y, int x);
+
+    ~Boolet();
+
+    void draw(WINDOW *win) const;
+
+    void clearPrevBoolet(WINDOW *win);
+};
+
 class Doodler : public Gameobject {
 public:
 
@@ -91,12 +106,14 @@ public:
 
     void contact(vector<Enemy> &en, int &jump, WINDOW *win);
 
-};
+    int align(vector<Enemy> &en);
 
+    void shootEnemy(Enemy &e, WINDOW *win);
 
-class Boolet : public Gameobject {
-public:
-    void draw();
+    void shootNothing(WINDOW *win);
+
+    // void shootNothing(WINDOW *win);
+
 };
 
 //FUNCTIONS
