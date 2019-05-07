@@ -14,6 +14,7 @@ using namespace std;
 
 float physicsM = 1;       //neccesary for keeping the physics time
 
+
 int main()  {
 
     WINDOW *gamewin;
@@ -29,6 +30,7 @@ int main()  {
     platforms.push_back(startplat2);
     platforms.push_back(startplat3);
 
+    vector<Enemy> enemies;
 
     int startx, starty, width, height; 						    //Parameters for gamewin(dow)
     int score = 0;                                          //keeps the score and can display it
@@ -36,6 +38,7 @@ int main()  {
     char mesg[]="Welcome to Moodle Jump! Press Any Button";				/* message to be appeared on the screen */
     char scoremsg[] = "Your Current GPA Is";
     srand(time(0));
+    int dead = 1;
     int row,col;        							    		/* to store the number of rows and *
 					 	            			    	    	* the number of columns of the screen */
     initscr();						            			    /* start the curses mode */
@@ -82,7 +85,9 @@ int main()  {
             usleep(100000 / physicsM);
             doodler.prevypos = doodler.ypos;
             doodler.prevxpos = doodler.xpos;
-            doodler.jump(platforms);            //checks for jump
+            if (dead) {
+                doodler.jump(platforms);            //checks for jump
+            }
             if (doodler.jumptrue == 1){
                 doodler.ypos--;
             }
@@ -93,23 +98,34 @@ int main()  {
         if (doodler.checkDeath() == 1){
             break;
         }
+
         doodler.time_stone();
-        if (doodler.reachLim() == 1){
+
+        if (doodler.reachLim() == 1) {
             score++;
             mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);
             clearPrevPlatform(platforms, gamewin);
-            moveEverything(doodler, platforms);
+            if (enemies.size() != 0) {
+                clearPrevEnemy(enemies, gamewin);
+            }
+            moveEverything(doodler, platforms, enemies);
         }
         if (platforms[platforms.size() - 1].ycen >= 8) {
             addPlat(platforms);
+            if (rand() % 10 == 3) {
+                addEnem(enemies);
+            }
         }
         destroyPlatform(platforms);             //Checks for platforms going offscreen and deletes them from the vector to stop a memory leak
+        destroyEnemy(enemies);
         spikes.draw(gamewin);
         doodler.clearPrev(gamewin);
         drawPlatforms(platforms, gamewin);
-        wattron(gamewin, 1);
+        drawEnemies(enemies, gamewin);
+        doodler.contact(enemies, dead, gamewin);
+        wattron(gamewin, dead);
         doodler.draw(gamewin);
-        wattroff(gamewin, 1);
+        wattroff(gamewin, dead);
         wrefresh(gamewin);
     }
     endwin();

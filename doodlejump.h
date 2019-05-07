@@ -34,9 +34,29 @@ public:
 
     ~Platform();
 
-    void draw(WINDOW *win) const ;
+    void draw(WINDOW *win) const;
 
-    void clear(WINDOW *win) const ;
+    void clear(WINDOW *win) const;
+};
+
+class Enemy : public Gameobject {
+public:
+    int xcen, ycen;
+    int xplace[8];
+    int prevxpos, preypos;
+
+    Enemy(int x, int y);
+
+    ~Enemy();
+
+    void draw(WINDOW *win) const;
+
+    void init();
+
+    void clear(WINDOW *win) const;
+
+    void destroy(WINDOW *win);
+
 };
 
 class Doodler : public Gameobject {
@@ -69,12 +89,10 @@ public:
 
     int reachLim();
 
+    void contact(vector<Enemy> &en, int &jump, WINDOW *win);
+
 };
 
-class Enemy : public Gameobject {
-public:
-    void draw();
-};
 
 class Boolet : public Gameobject {
 public:
@@ -89,13 +107,21 @@ int _kbhit();
 
 void drawPlatforms(const vector<Platform> &plat, WINDOW *win);
 
+void drawEnemies(const vector<Enemy> &en, WINDOW *win);
+
 void clearPrevPlatform(vector<Platform> &plat, WINDOW *win);
 
-void moveEverything(Doodler &doodler, vector<Platform> &plat);
+void clearPrevEnemy(vector<Enemy> &enem, WINDOW *win);
+
+void moveEverything(Doodler &doodler, vector<Platform> &plat, vector<Enemy> &enem);
 
 void addPlat(vector<Platform> &v);
 
+void addEnem(vector<Enemy> &v);
+
 void destroyPlatform(vector<Platform> &plat);
+
+void destroyEnemy(vector<Enemy> &en);
 
 #endif // DOODLEJUMP_H ///:~
 

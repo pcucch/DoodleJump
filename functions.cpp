@@ -6,6 +6,7 @@
 #include <stropts.h>
 #include <sys/ioctl.h>
 #include <vector>
+#include <unistd.h>
 
 
 using namespace std;
@@ -56,16 +57,32 @@ void drawPlatforms(const vector<Platform> &plat, WINDOW *win){
     }
 }
 
-void moveEverything(Doodler &doodler, vector<Platform> &plat){
+void drawEnemies(const vector<Enemy> &en, WINDOW *win) {
+    for (int i = 0; i < en.size(); i++) {
+        en[i].draw(win);
+    }
+}
+
+void moveEverything(Doodler &doodler, vector<Platform> &plat, vector<Enemy> &enemy){
     doodler.ypos++;
     for (int i = 0; i < plat.size(); ++i) {
         plat[i].ycen++;
+        if(i < enemy.size()) {
+            enemy[i].ycen++;
+        }
     }
+    usleep(100);
 }
 
 void clearPrevPlatform(vector<Platform> &plat, WINDOW *win){
     for (int i = 0; i < plat.size(); i++){
-            plat[i].clear(win);
+        plat[i].clear(win);
+    }
+}
+
+void clearPrevEnemy(vector<Enemy> &enem, WINDOW *win) {
+    for (int i = 0; i < enem.size(); i++) {
+        enem[i].clear(win);
     }
 }
 
@@ -75,9 +92,23 @@ void addPlat(vector<Platform> &v) {
     return;
 }
 
+void addEnem(vector<Enemy> &v) {
+    Enemy e(rand() % 40 + 10, 2);
+    e.init();
+    v.push_back(e);
+}
+
 void destroyPlatform(vector<Platform> &plat){
-    if(plat[0].ycen >= 50){
+    if(plat[0].ycen >= 50) {
         plat.erase(plat.begin());
+    }
+}
+
+void destroyEnemy(vector<Enemy> &en) {
+    if (en.size() != 0) {
+        if (en[0].ycen >= 50) {
+            en.erase(en.begin());
+        }
     }
 }
 
