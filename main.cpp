@@ -20,6 +20,7 @@ int main()  {
     WINDOW *gamewin;
     Doodler doodler;
     DeathSpikes spikes;
+    /*
     Platform startplat(31, 42);             //starting position of first platform
     Platform startplat1(20,30);
     Platform startplat2 (40, 25);
@@ -29,7 +30,7 @@ int main()  {
     platforms.push_back(startplat1);
     platforms.push_back(startplat2);
     platforms.push_back(startplat3);
-
+    */
     vector<Enemy> enemies;
 
     vector<Boolet>boolets;
@@ -37,6 +38,7 @@ int main()  {
     int startx, starty, width, height; 						    //Parameters for gamewin(dow)
     int score = 0;                                          //keeps the score and can display it
     int ch = 0;
+    int quitorreplay;                  //later, you choose whether to quit or replay the game
     char mesg[]="Welcome to Moodle Jump! Press Any Button";				/* message to be appeared on the screen */
     char scoremsg[] = "Your Current GPA Is";
     srand(time(0));
@@ -61,88 +63,125 @@ int main()  {
     startx = (COLS - width) / 2;							/* of the window		*/
     printw("Press Q to exit");
     refresh();
-    gamewin = create_newwin(height, width, starty, startx);
+
     keypad(gamewin,TRUE);
     curs_set(0);        //make cursor invisible
 
-    while(ch != 'q') {                       //play game
-        if (_kbhit()) {
-            ch = getch();
-            switch (ch) {
-                case KEY_LEFT:
-                    doodler.moveLeft(1);
-                    break;
-                case KEY_RIGHT:
-                    doodler.moveRight(1);
-                    break;
-                case 'a':
-                    doodler.moveLeft(2);
-                    break;
-                case 'd':
-                    doodler.moveRight(2);
-                    break;
-                case ' ' :
-                    if(strike = doodler.align(enemies)) {
-                        doodler.shootEnemy(enemies[strike], gamewin);
-                        enemies[strike-1].destroy(gamewin);
-                        enemies.erase(enemies.begin() + strike);
-                    }
-                    else {
-                        doodler.shootNothing(gamewin);
-                    }
-                    break;
-                default:
-                    break;
+    while (1) {
+
+        score = 0;
+        doodler.xpos = 31;
+        doodler.ypos = 38;
+
+        gamewin = create_newwin(height, width, starty, startx);
+
+        Platform startplat(31, 42);             //starting position of first platform
+        Platform startplat1(20,30);
+        Platform startplat2 (40, 25);
+        Platform startplat3 (40, 12);
+        vector<Platform> platforms;
+        platforms.push_back(startplat);
+        platforms.push_back(startplat1);
+        platforms.push_back(startplat2);
+        platforms.push_back(startplat3);
+
+        while (ch != 'q') {                       //play game
+            if (_kbhit()) {
+                ch = getch();
+                switch (ch) {
+                    case KEY_LEFT:
+                        doodler.moveLeft(1);
+                        break;
+                    case KEY_RIGHT:
+                        doodler.moveRight(1);
+                        break;
+                    case 'a':
+                        doodler.moveLeft(2);
+                        break;
+                    case 'd':
+                        doodler.moveRight(2);
+                        break;
+                    case ' ' :
+                        if (strike = doodler.align(enemies)) {
+                            doodler.shootEnemy(enemies[strike], gamewin);
+                            enemies[strike - 1].destroy(gamewin);
+                            enemies.erase(enemies.begin() + strike);
+                        } else {
+                            doodler.shootNothing(gamewin);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                usleep(100000 / physicsM);
+                doodler.prevypos = doodler.ypos;
+                doodler.prevxpos = doodler.xpos;
+                if (dead) {
+                    doodler.jump(platforms);            //checks for jump
+                }
+                if (doodler.jumptrue == 1) {
+                    doodler.ypos--;
+                } else if (doodler.jumptrue == 0) {
+                    doodler.ypos++;
+                }
             }
+            if (doodler.checkDeath() == 1) {
+                break;
+            }
+
+            doodler.time_stone();
+
+            if (doodler.reachLim() == 1) {
+                score++;
+                mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);
+                clearPrevPlatform(platforms, gamewin);
+                if (enemies.size() != 0) {
+                    clearPrevEnemy(enemies, gamewin);
+                }
+                moveEverything(doodler, platforms, enemies);
+            }
+            if (platforms[platforms.size() - 1].ycen >= 8) {
+                addPlat(platforms);
+                if (rand() % 10 == 3) {
+                    addEnem(enemies);
+                }
+            }
+            destroyPlatform(platforms);             //Checks for platforms going offscreen and deletes them from the vector to stop a memory leak
+            destroyEnemy(enemies);
+            spikes.draw(gamewin);
+            doodler.clearPrev(gamewin);
+            drawPlatforms(platforms, gamewin);
+            drawEnemies(enemies, gamewin);
+            doodler.contact(enemies, dead, gamewin);
+            wattron(gamewin, dead);
+            doodler.draw(gamewin);
+            wattroff(gamewin, dead);
+            wrefresh(gamewin);
         }
-        else {
-            usleep(100000 / physicsM);
-            doodler.prevypos = doodler.ypos;
-            doodler.prevxpos = doodler.xpos;
-            if (dead) {
-                doodler.jump(platforms);            //checks for jump
+        destroy_win(gamewin);
+
+        emptyPlatVector(platforms);
+        emptyEnemyVector(enemies);
+
+
+        erase();
+
+        mvprintw(row/2,(col-strlen(mesg))/2 + 5,"%s","Yeet");
+        mvprintw((row/2) + 1,(col-strlen(mesg))/2,"Your GPA was %d", score);
+        mvprintw((row/2) + 2,(col-strlen(mesg))/2,"Press Q to exit");
+        usleep(100000);
+        while (quitorreplay = getch()){
+            if (quitorreplay == 'q'){
+                break;
             }
-            if (doodler.jumptrue == 1){
-                doodler.ypos--;
-            }
-            else if (doodler.jumptrue == 0) {
-                doodler.ypos++;
-            }
+            else { break;}
         }
-        if (doodler.checkDeath() == 1){
+        if (quitorreplay == 'q'){
             break;
         }
-
-        doodler.time_stone();
-
-        if (doodler.reachLim() == 1) {
-            score++;
-            mvprintw(row - 2, 0, "%s %d\n", scoremsg, score);
-            clearPrevPlatform(platforms, gamewin);
-            if (enemies.size() != 0) {
-                clearPrevEnemy(enemies, gamewin);
-            }
-            moveEverything(doodler, platforms, enemies);
-        }
-        if (platforms[platforms.size() - 1].ycen >= 8) {
-            addPlat(platforms);
-            if (rand() % 10 == 3) {
-                addEnem(enemies);
-            }
-        }
-        destroyPlatform(platforms);             //Checks for platforms going offscreen and deletes them from the vector to stop a memory leak
-        destroyEnemy(enemies);
-        spikes.draw(gamewin);
-        doodler.clearPrev(gamewin);
-        drawPlatforms(platforms, gamewin);
-        drawEnemies(enemies, gamewin);
-        doodler.contact(enemies, dead, gamewin);
-        wattron(gamewin, dead);
-        doodler.draw(gamewin);
-        wattroff(gamewin, dead);
-        wrefresh(gamewin);
     }
-    endwin();
+    endwin();       //completely ends the game
 
     return 0;
 }

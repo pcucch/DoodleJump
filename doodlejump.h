@@ -120,6 +120,8 @@ public:
 
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
+void destroy_win(WINDOW *local_win);
+
 int _kbhit();
 
 void drawPlatforms(const vector<Platform> &plat, WINDOW *win);
@@ -139,6 +141,10 @@ void addEnem(vector<Enemy> &v);
 void destroyPlatform(vector<Platform> &plat);
 
 void destroyEnemy(vector<Enemy> &en);
+
+void emptyPlatVector(vector<Platform> &plat);
+
+void emptyEnemyVector(vector<Enemy> &en);
 
 #endif // DOODLEJUMP_H ///:~
 

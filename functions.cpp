@@ -28,6 +28,12 @@ WINDOW *create_newwin(int height, int width, int starty, int startx){
     return local_win;
 }
 
+void destroy_win(WINDOW *local_win) {
+    wborder(local_win, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+    wrefresh(local_win);
+    delwin(local_win);
+}
+
 int _kbhit() {                          //kbhit without conio.h, essential for main.cpp
     static const int STDIN = 0;
     static bool initialized = false;
@@ -110,3 +116,14 @@ void destroyEnemy(vector<Enemy> &en) {
     }
 }
 
+void emptyPlatVector(vector<Platform> &plat){
+    if (plat.size() != 0){
+        plat.erase(plat.begin(), plat.begin() + plat.size());
+    }
+}
+
+void emptyEnemyVector(vector<Enemy> &en){
+    if (en.size() != 0){
+        en.erase(en.begin(), en.begin() + en.size());
+    }
+}

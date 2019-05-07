@@ -16,7 +16,10 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doodlejump.h" beforeDir="false" afterPath="$PROJECT_DIR$/doodlejump.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/functions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.o" beforeDir="false" afterPath="$PROJECT_DIR$/functions.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +56,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
+            <state relative-caret-position="135">
+              <caret line="136" column="65" lean-forward="true" selection-start-line="136" selection-start-column="65" selection-end-line="136" selection-end-column="65" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="790">
+              <caret line="128" selection-start-line="128" selection-end-line="128" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -63,10 +87,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/functions.cpp">
+        <entry file="file://$PROJECT_DIR$/bulletfunctions.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -77,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/enemyfunctions.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
+            <state relative-caret-position="203">
+              <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -89,20 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/platformfunctions.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
+            <state relative-caret-position="68">
               <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/doodlerfunctions.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="143" column="37" selection-start-line="143" selection-start-column="37" selection-end-line="143" selection-end-column="37" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -113,8 +125,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doodlejump.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+            <state relative-caret-position="803">
+              <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doodlerfunctions.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2670">
+              <caret line="184" column="20" selection-start-line="184" selection-start-column="20" selection-end-line="184" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,13 +155,14 @@
         <option value="$PROJECT_DIR$/Shape.cpp" />
         <option value="$PROJECT_DIR$/yeet.cpp" />
         <option value="$PROJECT_DIR$/functions.h" />
-        <option value="$PROJECT_DIR$/makefile" />
         <option value="$PROJECT_DIR$/platformfunctions.cpp" />
-        <option value="$PROJECT_DIR$/functions.cpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/enemyfunctions.cpp" />
-        <option value="$PROJECT_DIR$/doodlejump.h" />
+        <option value="$PROJECT_DIR$/bulletfunctions.cpp" />
         <option value="$PROJECT_DIR$/doodlerfunctions.cpp" />
+        <option value="$PROJECT_DIR$/functions.cpp" />
+        <option value="$PROJECT_DIR$/doodlejump.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/makefile" />
       </list>
     </option>
   </component>
@@ -228,7 +253,7 @@
       <workItem from="1556224895653" duration="808000" />
       <workItem from="1556304055823" duration="979000" />
       <workItem from="1556931838083" duration="94866000" />
-      <workItem from="1557185681556" duration="19669000" />
+      <workItem from="1557185681556" duration="33860000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some errors">
       <created>1556994089536</created>
@@ -300,17 +325,31 @@
       <option name="project" value="LOCAL" />
       <updated>1557179544429</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added enemy spawning, death conditions, and other functions">
+      <created>1557207990744</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1557207990745</updated>
+    </task>
+    <task id="LOCAL-00012" summary="ability to shoot and kill enemies">
+      <created>1557215799334</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1557215799334</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117555000" />
+    <option name="totallyTimeSpent" value="131746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1872" height="1081" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19627193" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19627193" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -321,7 +360,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32985386" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32985386" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3152401" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32985386" />
@@ -329,8 +368,30 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.016447369" />
+      <window_info anchor="right" id="Database" order="3" weight="0.016447369" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19627193" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32985386" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979124" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32985386" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3152401" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32985386" />
+      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.016447369" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -386,7 +447,9 @@
     <MESSAGE value="fixed physics engine, added way to put platforms on the screen, and made a bounce function" />
     <MESSAGE value="made move up possible" />
     <MESSAGE value="fixed memory leak with platform vectors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed memory leak with platform vectors" />
+    <MESSAGE value="added enemy spawning, death conditions, and other functions" />
+    <MESSAGE value="ability to shoot and kill enemies" />
+    <option name="LAST_COMMIT_MESSAGE" value="ability to shoot and kill enemies" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="setValue">
@@ -421,33 +484,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.make">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/enemyfunctions.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
+        <state relative-caret-position="203">
+          <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions.cpp">
+    <entry file="file://$PROJECT_DIR$/platformfunctions.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
+        <state relative-caret-position="68">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bulletfunctions.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -456,25 +522,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doodlejump.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+        <state relative-caret-position="803">
+          <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/platformfunctions.cpp">
+    <entry file="file://$PROJECT_DIR$/functions.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/enemyfunctions.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
+        <state relative-caret-position="790">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -483,11 +539,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doodlerfunctions.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="143" column="37" selection-start-line="143" selection-start-column="37" selection-end-line="143" selection-end-column="37" />
+        <state relative-caret-position="2670">
+          <caret line="184" column="20" selection-start-line="184" selection-start-column="20" selection-end-line="184" selection-end-column="20" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="136" column="65" lean-forward="true" selection-start-line="136" selection-start-column="65" selection-end-line="136" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
         </state>
       </provider>
     </entry>
