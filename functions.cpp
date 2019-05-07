@@ -127,3 +127,66 @@ void emptyEnemyVector(vector<Enemy> &en){
         en.erase(en.begin(), en.begin() + en.size());
     }
 }
+
+void clearBoard(WINDOW *win, vector<Platform> &plat, vector<Enemy> &en){
+    destroy_win(win);
+    emptyPlatVector(plat);
+    emptyEnemyVector(en);
+
+}
+
+void refreshBoard(Doodler &doodler, vector<Platform> &platforms, vector<Enemy> &enemies, DeathSpikes &spikes, WINDOW *gamewin, int dead){
+    destroyPlatform(platforms);             //Checks for platforms going offscreen and deletes them from the vector to stop a memory leak
+    destroyEnemy(enemies);
+    spikes.draw(gamewin);
+    doodler.clearPrev(gamewin);
+    drawPlatforms(platforms, gamewin);
+    drawEnemies(enemies, gamewin);
+    wattron(gamewin, dead);
+    doodler.draw(gamewin);
+    wattroff(gamewin, dead);
+    wrefresh(gamewin);
+}
+
+void printQuote(int row, int col){
+    switch (rand() % 9) {
+        case 0:
+            mvprintw(row/2,col/2 - 20,"%s","\"I Suppose That Is Just The Nature of Things\"");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-S. Mintchev");
+            break;
+        case 1:
+            mvprintw(row/2,col/2 - 20,"%s","\"At Columbia, They Use L O N G Transistors\"");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-T. Cumberbatch");
+            break;
+        case 2:
+            mvprintw(row/2,col/2 - 20,"%s","\"Let's Begin\"");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-A. Wolf");
+            break;
+        case 3:
+            mvprintw(row/2,col/2 - 20,"%s","\"The Answer Is Simple\"");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-Z. Akkerman");
+            break;
+        case 4:
+            mvprintw(row/2,col/2 - 6,"%s","*sips water*");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-L. Vulakh");
+            break;
+        case 5:
+            mvprintw(row/2,col/2 - 20,"%s","*draws stem-leaf plot*");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-R. Smyth");
+            break;
+        case 6:
+            mvprintw(row/2,col/2 - 20,"%s","\"You Know How This Works, Man");
+            mvprintw(row/2 + 1, col/2 - 20, "%s", "The Guy With The Gun Gets to Tell The Truth\"");
+            mvprintw(row/2 + 2,col/2 - 5,"%s","-K. Kolack");
+            break;
+        case 7:
+            mvprintw(row/2,col/2 - 20,"%s","\"It Smells Like Updog in Here\"");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-Revans");
+            break;
+        case 8:
+            mvprintw(row/2,col/2 - 20,"%s","\"Ouch\"");
+            mvprintw(row/2 + 1,col/2 - 5,"%s","-R. Smyth");
+            break;
+    }
+
+}

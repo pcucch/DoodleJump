@@ -146,6 +146,12 @@ void emptyPlatVector(vector<Platform> &plat);
 
 void emptyEnemyVector(vector<Enemy> &en);
 
+void clearBoard(WINDOW *win, vector<Platform> &plat, vector<Enemy> &en);
+
+void refreshBoard(Doodler &doodler, vector<Platform> &platforms, vector<Enemy> &enemies, DeathSpikes &spikes, WINDOW *gamewin, int dead);
+
+void printQuote(int row, int col);
+
 #endif // DOODLEJUMP_H ///:~
 
 

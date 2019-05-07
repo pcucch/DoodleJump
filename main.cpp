@@ -14,25 +14,13 @@ using namespace std;
 
 float physicsM = 1;       //neccesary for keeping the physics time
 
-
 int main()  {
 
+    //Initialize objects and vectors
     WINDOW *gamewin;
     Doodler doodler;
     DeathSpikes spikes;
-    /*
-    Platform startplat(31, 42);             //starting position of first platform
-    Platform startplat1(20,30);
-    Platform startplat2 (40, 25);
-    Platform startplat3 (40, 12);
-    vector<Platform> platforms;
-    platforms.push_back(startplat);
-    platforms.push_back(startplat1);
-    platforms.push_back(startplat2);
-    platforms.push_back(startplat3);
-    */
     vector<Enemy> enemies;
-
     vector<Boolet>boolets;
 
     int startx, starty, width, height; 						    //Parameters for gamewin(dow)
@@ -69,12 +57,12 @@ int main()  {
 
     while (1) {
 
+        ch = 'w';
         score = 0;
+        dead = 1;
         doodler.xpos = 31;
         doodler.ypos = 38;
-
         gamewin = create_newwin(height, width, starty, startx);
-
         Platform startplat(31, 42);             //starting position of first platform
         Platform startplat1(20,30);
         Platform startplat2 (40, 25);
@@ -147,35 +135,23 @@ int main()  {
                     addEnem(enemies);
                 }
             }
-            destroyPlatform(platforms);             //Checks for platforms going offscreen and deletes them from the vector to stop a memory leak
-            destroyEnemy(enemies);
-            spikes.draw(gamewin);
-            doodler.clearPrev(gamewin);
-            drawPlatforms(platforms, gamewin);
-            drawEnemies(enemies, gamewin);
             doodler.contact(enemies, dead, gamewin);
-            wattron(gamewin, dead);
-            doodler.draw(gamewin);
-            wattroff(gamewin, dead);
-            wrefresh(gamewin);
+            refreshBoard(doodler, platforms, enemies, spikes, gamewin, dead);
         }
-        destroy_win(gamewin);
+        clearBoard(gamewin, platforms, enemies);
+        erase();                                        //clears board of text
 
-        emptyPlatVector(platforms);
-        emptyEnemyVector(enemies);
-
-
-        erase();
-
-        mvprintw(row/2,(col-strlen(mesg))/2 + 5,"%s","Yeet");
-        mvprintw((row/2) + 1,(col-strlen(mesg))/2,"Your GPA was %d", score);
-        mvprintw((row/2) + 2,(col-strlen(mesg))/2,"Press Q to exit");
+        printQuote(row, col);
+        mvprintw((row/2) + 3,col/2 - 4,"Your GPA was %d", score);
+        mvprintw((row/2) + 4,(col-strlen(mesg))/2,"Press Q to exit, Press any button to play again!");
         usleep(100000);
         while (quitorreplay = getch()){
             if (quitorreplay == 'q'){
                 break;
             }
-            else { break;}
+            else {
+                break;
+            }
         }
         if (quitorreplay == 'q'){
             break;
